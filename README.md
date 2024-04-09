@@ -1,10 +1,10 @@
 # BlogsDjango
 
-This project used class base view, form and model forms.
+This project used class-based view, form, and model forms.
 
 # To setup 
 
-## Create virtualenv
+## Create virtualenv and install require packages
 
 
     python -m venv virtualenv
