@@ -11,7 +11,7 @@ This project used class-based view, form, and model forms.
 
     .\virtualenv\Scripts\activate
 
-    pip freeze -r .\requirements.txt
+    pip install -r .\requirements.txt
 
 
 ## Setup db in MySQL
