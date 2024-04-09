@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--Contains Start-->
+<div class="d-flex justify-content-center vh-100">
+    <div>
+        <h2>User Registration</h2>
+        {% if messages %}
+        {% for message in messages %}
+        <p {% if message.tags %} class=" text-danger alert alert-{{message.tags}}" mb-5 {% endif %}>
+            {{message}}
+        </p>
+        {% endfor %}
+        {% endif %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <!-- {{ form.as_p }}-->
+            {% for field in form %}
+            <div class="mb-3 form-group">
+                {{field.label_tag}} {{field}}
+                <small class="text-danger">
+                    {{field.errors|striptags}}
+                </small>
+            </div>
+            {% endfor%}
+            <button type="submit" class="btn btn-primary">Register</button>
+
+            {% if form.non_field_errors %}
+            <div class="mb-3 form-group text-danger">
+                {% for error in form.non_field_errors %}
+                <small>{{ error }}</small><br>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+<!--Contains End-->
+
+{% endblock %}

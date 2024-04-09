@@ -1,0 +1,15 @@
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+body {
+  background-color: lightblue;
+}
+
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+    height: 220px;
+}

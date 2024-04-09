@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--Contains Start-->
+
+<!-- Button to Open Create New Post Modal -->
+{% if user.is_authenticated %}
+<button type="button" class="btn btn-success m-4" data-bs-toggle="modal" data-bs-target="#createPostModal">
+    Create New Post
+</button>
+{% endif %}
+
+<!-- Modal for Creating New Post -->
+<div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createPostModalLabel">Create New Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% if messages %}
+                {% for message in messages %}
+                <p {% if message.tags %} class=" text-danger alert alert-{{message.tags}}" mb-5 {% endif %}>
+                    {{message}}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <form method="post" action="{% url 'post_create' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Create Post</button>
+
+                    {% if form.non_field_errors %}
+                    <div class="mb-3 form-group text-danger">
+                        {% for error in form.non_field_errors %}
+                        <small>{{ error }}</small><br>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- You can include a "Submit" button here if you want to submit the form within the modal -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if post_list %}
+<div class="row row-cols-1 row-cols-md-3 g-4 p-4 ">
+    {% for post in post_list %}
+    <div class="col ">
+        <div class="card shadow  mb-5 bg-body-tertiary rounded">
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+            <div class="card-body container ">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-start fst-italic mb-0">{{ post.author.username }}</h5>
+                    </div>
+
+                    <div class="col icons-container text-end p-1">
+                        <a href="{% url 'post_details' post.pk %}">
+                            <i class="bi bi-eye-fill"></i> <!-- Details icon -->
+                        </a>
+                        {% if request.user and request.user == post.author %}
+                        <a href="{% url 'post_delete' post.pk %}">
+                            <i class="bi bi-trash3"></i> <!-- Delete icon -->
+                        </a>
+                        <a href="{% url 'post_update' post.pk %}">
+                            <i class="bi bi-pencil-fill update-icon"></i> <!-- Update icon -->
+                        </a>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <hr>
+                <h5 class="card-title text-center fw-bold">{{ post.title }}</h5>
+                <p class="card-text" style="overflow: hidden; max-height: 100px;">
+                    {{ post.content }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+
+<div class="container mt-5">
+    <h2>No Data Found</h2>
+    <p>Sorry, there are no posts available.</p>
+</div>
+{% endif %}
+
+<!--Contains End-->
+
+{% endblock %}
+<!--Pagination End -->

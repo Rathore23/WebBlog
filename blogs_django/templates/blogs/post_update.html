@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--Contains Start-->
+<div class="container">
+    <h2 class="text-center">Update Post</h2>
+    <form method="post" action="{% url 'post_create' %}" enctype="multipart/form-data" class="row g-3">
+        {% csrf_token %}
+        {% for field in form %}
+        {% if field.name == 'image' %}
+        {{field.name}}
+        <div class="col-md-6">
+            <div class="row g-3">
+                <img src="http://127.0.0.1:8000/media/{{field.value}}" id="imagePreview" class="card-img-top" alt="Preview Image">
+            </div>
+            <label for="image" class="form-label">{{field.name}}</label>
+            <input type="file" class="form-control" id="image" name="image">
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% for field in form %}
+        {% if field.name != 'image' %}
+        <div class="col-md-6">
+            <div class="row g-3">
+                <div class="col-md-12">
+                    {{field.label_tag}} {{field}}
+
+                </div>
+
+
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary">Create Post</button>
+        </div>
+    </form>
+</div>
+<!--Contains End-->
+
+
+{% endblock %}
