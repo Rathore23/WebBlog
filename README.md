@@ -1,17 +1,21 @@
 # BlogsDjango
 
+<<<<<<< HEAD
 This project used class base view, form and models forms.
+=======
+This project used class-based view, form, and model forms.
+>>>>>>> 291bd409abd58e245ba8d0d6e51dde0664684175
 
 # To setup 
 
-## Create virtualenv
+## Create virtualenv and install require packages
 
 
     python -m venv virtualenv
 
     .\virtualenv\Scripts\activate
 
-    pip freeze -r .\requirements.txt
+    pip install -r .\requirements.txt
 
 
 ## Setup db in MySQL
@@ -108,3 +112,7 @@ Django website loading speed, and many other things**.
 
 
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 291bd409abd58e245ba8d0d6e51dde0664684175
