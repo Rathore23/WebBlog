@@ -1,10 +1,8 @@
 # BlogsDjango
 
-<<<<<<< HEAD
-This project used class base view, form and models forms.
-=======
+
 This project used class-based view, form, and model forms.
->>>>>>> 291bd409abd58e245ba8d0d6e51dde0664684175
+
 
 # To setup 
 
@@ -99,8 +97,8 @@ Django website loading speed, and many other things**.
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
-    EMAIL_HOST_USER = 'rameshhlink@gmail.com'
-    EMAIL_HOST_PASSWORD = 'sysatsqxvqsltcxf'
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
@@ -110,9 +108,3 @@ Django website loading speed, and many other things**.
     TEMPLATED_EMAIL_TEMPLATE_DIR = 'templated_email/'
     TEMPLATED_EMAIL_FILE_EXTENSION = 'html'
 
-
-
-<<<<<<< HEAD
-=======
-    
->>>>>>> 291bd409abd58e245ba8d0d6e51dde0664684175
