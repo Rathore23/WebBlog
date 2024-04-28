@@ -39,6 +39,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'debug_toolbar',  # pip install django-debug-toolbar
 ]
 
 LOCAL_APPS = [
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -158,3 +160,19 @@ POST_PHOTOS = 'post'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+INTERNAL_IPS = [
+   '127.0.0.1',
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rexrathore23@gmail.com'
+EMAIL_HOST_PASSWORD = 'tdzvovocqyqxljga'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+TEMPLATED_EMAIL_TEMPLATE_DIR = 'templated_email/'
+TEMPLATED_EMAIL_FILE_EXTENSION = 'html'

@@ -4,38 +4,68 @@
 {% block content %}
 
 <!--Contains Start-->
-<!--Contains Start-->
-<div class="d-flex justify-content-center  vh-100">
-    <div>
-        <h2>User Login</h2>
-        {% if messages %}
-        {% for message in messages %}
-        <p {% if message.tags %} class="alert alert-{{message.tags}}" mb-5 {% endif %}>
-            {{message}}
-        </p>
-        {% endfor %}
-        {% endif %}
-        <form method="post">
-            {% csrf_token %}
-            <!-- {{ form.as_p }}-->
-            {% for field in form %}
-            <div class="mb-3 form-group">
-                {{field.label_tag}} {{field}} {{field.errors|striptags}}
-            </div>
-            {% endfor%}
-            <button type="submit" class="btn btn-primary">Login</button>
+<div class="container">
+    <!--<div class="d-flex justify-content-center vh-100">-->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="col-12">
+                        <h2>User Login</h2>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p {% if message.tags %} class="alert alert-{{message.tags}}" mb-5 {% endif %}>
+                            {{message}}
+                        </p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- {{ form.as_p }}-->
+                        {% for field in form %}
+                        <div class="mb-3 form-group">
+                            {{field.label_tag}} {{field}} {{field.errors|striptags}}
+                        </div>
+                        {% endfor%}
 
-            {% if form.non_field_errors %}
-            <div class="mb-3 form-group text-danger">
-                {% for error in form.non_field_errors %}
-                <small>{{ error }}</small><br>
-                {% endfor %}
+                        <div class="text-center d-grid">
+                            <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                            >Login
+                            </button>
+                        </div>
+                        <br>
+
+                        {% if form.non_field_errors %}
+                        <div class="mb-3 form-group text-danger">
+                            {% for error in form.non_field_errors %}
+                            <small>{{ error }}</small><br>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </form>
+                    <p>Not registered?
+                        <a href="{% url 'register' %}"
+                           style="text-decoration: none;">
+                            Create an account
+                        </a>
+                    </p>
+                </div>
+
             </div>
-            {% endif %}
-        </form>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p style="color: rgb(19, 19, 188)!important;">
+                        <a href="{% url 'password_reset' %}" class="text-white-50 ms-1" style="color: rgb(19, 19, 188)!important;">
+                            Forgot your password?
+                        </a>
+                    </p>
+                </div> <!-- end col -->
+            </div>
+        </div>
     </div>
-</div>
-<!--Contains End-->
-<!--Contains End-->
+    <!--Contains End-->
 
-{% endblock %}
+    {% endblock %}

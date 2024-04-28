@@ -1,3 +1,7 @@
+import time
+
+from django.db import reset_queries, connection
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -29,6 +33,18 @@ class HomeView(ListView):
     queryset = Post.objects.all().order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 3
+
+    def get_queryset(self):
+
+        queryset = Post.objects.all()
+        if self.request.GET.get('search') is not None:
+            query = self.request.GET.get('search')
+            queryset = queryset.filter(
+                Q(title__icontains=query) |
+                Q(content__icontains=query) |
+                Q(author__username=query)
+            )
+        return queryset.order_by('-created_on')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

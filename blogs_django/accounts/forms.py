@@ -1,5 +1,10 @@
 from django.contrib.auth import password_validation
-from django.contrib.auth.forms import BaseUserCreationForm, UserCreationForm, UsernameField, AuthenticationForm
+from django.contrib.auth.forms import (
+    BaseUserCreationForm,
+    AuthenticationForm,
+    UserCreationForm,
+    UsernameField,
+)
 from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import gettext_lazy as _

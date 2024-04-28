@@ -19,10 +19,18 @@
                     <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+            <!-- Search Functionality Start -->
+            <form class="d-flex" role="search" name="searchForm" method="GET" action="{% url 'home' %}">
+                <input
+                        class="form-control me-2"
+                        type="search" placeholder="Search"
+                        aria-label="Search"
+                        name="search"
+                >
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <!-- Search Functionality End -->
 
             <ul class="nav justify-content-end">
                 {% if user.is_authenticated %}
